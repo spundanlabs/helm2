@@ -10,5 +10,9 @@ RUN apk add --update --no-cache curl ca-certificates bash && \
     chmod +x /usr/bin/helm && \
     rm -rf linux-amd64 && \
     apk del curl && \
-    rm -f /var/cache/apk/* \
-    helm init --skip-refresh --skip-repos --client-only
+    rm -f /var/cache/apk/* 
+    # \
+    # helm init --skip-refresh --skip-repos --client-only
+RUN helm init --client-only --skip-refresh \
+    && helm repo remove stable \
+    && helm repo remove local
